@@ -15,7 +15,7 @@ public class Dv : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         horizontalInput =Input.GetAxis("Horizontal");
         verticalInput =Input.GetAxis("Vertical");
