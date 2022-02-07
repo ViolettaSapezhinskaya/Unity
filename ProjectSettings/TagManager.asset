@@ -7,6 +7,8 @@ TagManager:
   - Mystery
   - Mobs
   - Gain
+  - Bullet
+  - Bonus
   layers:
   - Default
   - TransparentFX
