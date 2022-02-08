@@ -23,16 +23,23 @@ public class Shooting : MonoBehaviour
     }
     void ShootPlayer()
     {
+        //исполнение функции через определенный интервал
+        //??Почему-то выпускает 4 шара, а затем большой промежуток
         InvokeRepeating("Shoot", indent, interval);
     }
     
     void Shoot()
     {
+        //выпускает шар 
         Instantiate(bullet, transform.position + new Vector3(0, 24, 0), transform.rotation);
     }
     private void OnTriggerEnter(Collider other)
     {
-        ShootPlayer();
+        //когда кто-то подходит исполняет функцию
+        if (gameObject.CompareTag("Player"))
+        {
+            ShootPlayer();
+        }
     }
     
 }

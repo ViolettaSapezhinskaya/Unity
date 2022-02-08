@@ -13,6 +13,7 @@ public class MotionDragon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //статическое движение дракона
         
     }
 }

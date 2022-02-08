@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnBonus : MonoBehaviour
 {
+    //реализовать спавн на разных  местах возле сундука
+    //проблема с реализацией списка мест
     public GameObject Pos;
     public GameObject bonus;
     // Start is called before the first frame update
@@ -19,8 +21,11 @@ public class SpawnBonus : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //int index = Random.Range(0, Pos.Length);
-        Instantiate(bonus, Pos.transform.position, transform.rotation);
-        Destroy(gameObject);
+        //когда кто-то подходит, выпускает бонус и исчезает 
+        if (gameObject.CompareTag("Player"))
+        {
+            Instantiate(bonus, Pos.transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 }

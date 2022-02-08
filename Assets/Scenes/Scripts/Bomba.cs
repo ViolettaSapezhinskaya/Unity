@@ -17,6 +17,7 @@ public class Bomba : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        //уничтожает объект при столкновении
         Destroy(other.gameObject);
     }
 }

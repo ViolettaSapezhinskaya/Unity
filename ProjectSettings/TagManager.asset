@@ -9,6 +9,9 @@ TagManager:
   - Gain
   - Bullet
   - Bonus
+  - Ground
+  - Bomb
+  - Key
   layers:
   - Default
   - TransparentFX
