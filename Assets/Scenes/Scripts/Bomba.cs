@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//скрипт для бомбы
 public class Bomba : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {

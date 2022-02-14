@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//сундук выпускает бонус
 public class SpawnBonus : MonoBehaviour
 {
-    //реализовать спавн на разных  местах возле сундука
-    //проблема с реализацией списка мест
-    public GameObject Pos;
+    public Transform[] Pos;
     public GameObject bonus;
+
+    private int PosIndex;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +22,11 @@ public class SpawnBonus : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        PosIndex = Random.Range(0, Pos.Length);
         //когда кто-то подходит, выпускает бонус и исчезает 
-        if (gameObject.CompareTag("Player"))
+        if (other.tag=="Player")
         {
-            Instantiate(bonus, Pos.transform.position, transform.rotation);
+            Instantiate(bonus, Pos[PosIndex].transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

@@ -4,12 +4,12 @@ using UnityEngine;
 using System;
 using System.Text;
 
+//стрельба противника
 public class Shooting : MonoBehaviour
 {
-    public float indent = 5.0f;
-    public float interval = 2.0f;
     public GameObject bullet;
-    private bool sh = false;
+    public float pause = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +19,15 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
-    void ShootPlayer()
+    IEnumerator ShootPlayer()
     {
-        //исполнение функции через определенный интервал
-        //??Почему-то выпускает 4 шара, а затем большой промежуток
-        InvokeRepeating("Shoot", indent, interval);
+        while (true)
+        {
+            Shoot();
+            yield return new WaitForSeconds(pause);
+        }
     }
     
     void Shoot()
@@ -36,10 +38,17 @@ public class Shooting : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //когда кто-то подходит исполняет функцию
-        if (gameObject.CompareTag("Player"))
+        if (other.tag=="Player")
         {
-            ShootPlayer();
+            StartCoroutine("ShootPlayer");
         }
     }
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag=="Player")
+        {
+            StopAllCoroutines();
+        }
+    }
+
 }

@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
+    public float jump = 5;
+
     //скорость движения
-    [SerializeField] private float speed = 10;
+    [SerializeField] float speed = 15;
     //скорость поворота
-    [SerializeField] private float turnSpeed = 40;
+    [SerializeField] float turnSpeed = 120;
+
+
     private float horizontalInput;
     private float verticalInput;
+    private float cameraInput;
     //есть ли пол
     private bool isGround = true;
-    public Rigidbody Rb;
-    public float jump = 5;
+    private Rigidbody Rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -26,27 +32,21 @@ public class PlayerController : MonoBehaviour
         //считывание нажатий игрока
         horizontalInput =Input.GetAxis("Horizontal");
         verticalInput =Input.GetAxis("Vertical");
-        
-        //движение вперед-назад
+        //cameraInput = Input.GetAxis("Mouse X");
+        //движение вперед-назад и влево-вправо
         transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
-        //поворот камеры при нажатии a и d
-        transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
+        transform.Rotate(Vector3.up * Time.deltaTime*turnSpeed*horizontalInput);
+        //transform.Rotate(Vector3.up, turnSpeed * cameraInput * Time.deltaTime);
         //прыжок при нажатии пробела
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
-            Rb.AddForce(Vector3.up * jump, ForceMode.Impulse);
-        }
-        int a = 0;
-        while (a!=5)
-        {
-            Debug.Log(a);
-            a += 1;
+            Rb.AddForce(Vector2.up * jump, ForceMode.Impulse);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         //на полу
-        if (gameObject.CompareTag("Ground"))
+        if (other.tag=="Ground")
         {
             isGround = true;
         }
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         //пола нет
-        if (gameObject.CompareTag("Mobs"))
+        if (other.tag=="Ground")
         {
             isGround = false;
         }

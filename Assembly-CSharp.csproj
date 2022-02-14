@@ -58,15 +58,18 @@
   <ItemGroup>
     <Compile Include="Assets\Scenes\Scripts\Bomba.cs" />
     <Compile Include="Assets\Scenes\Scripts\Boom.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Collaps.cs" />
+    <Compile Include="Assets\Scenes\Scripts\ControllerMob.cs" />
     <Compile Include="Assets\Scenes\Scripts\Destruction.cs" />
-    <Compile Include="Assets\Scenes\Scripts\MotionDragon.cs" />
+    <Compile Include="Assets\Scenes\Scripts\MobHealth.cs" />
     <Compile Include="Assets\Scenes\Scripts\MoveForward.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Mystery.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player.cs" />
     <Compile Include="Assets\Scenes\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scenes\Scripts\ShootPlayer.cs" />
     <Compile Include="Assets\Scenes\Scripts\Shooting.cs" />
     <Compile Include="Assets\Scenes\Scripts\SpawnBonus.cs" />
+    <Compile Include="Assets\Scenes\Scripts\TriggerWithBomb.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Winner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Dow\Modular Castle\Castle_ReadMe.txt" />

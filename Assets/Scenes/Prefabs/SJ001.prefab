@@ -1688,6 +1688,7 @@ GameObject:
   - component: {fileID: 11100000}
   - component: {fileID: 7886398778370213543}
   - component: {fileID: 4493341511610876112}
+  - component: {fileID: -658517425381858221}
   m_Layer: 0
   m_Name: SJ001
   m_TagString: Untagged
@@ -1760,3 +1761,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8515884, y: 0.8040304, z: 1.087024}
   m_Center: {x: -0.08187166, y: 0, z: 0.1450901}
+--- !u!114 &-658517425381858221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f766e530f423264ca8d7a4a465313bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PatrolPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

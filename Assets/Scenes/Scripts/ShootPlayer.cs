@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//стрельба игрока
 public class ShootPlayer : MonoBehaviour
 {
     public GameObject bullet;

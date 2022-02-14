@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//уничтожение пули
 public class Destruction : MonoBehaviour
 {
-    Vector3 start;
     public float distance = 120;
+
+    Vector3 start;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,10 @@ public class Destruction : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+         Destroy(gameObject);
     }
 
 }

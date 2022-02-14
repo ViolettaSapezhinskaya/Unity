@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//движение вперед без физики
 public class MoveForward : MonoBehaviour
 {
     public float speed = 5;
