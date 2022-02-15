@@ -1689,6 +1689,8 @@ GameObject:
   - component: {fileID: 7886398778370213543}
   - component: {fileID: 4493341511610876112}
   - component: {fileID: -658517425381858221}
+  - component: {fileID: 8837607292488380415}
+  - component: {fileID: 6745181783025221201}
   m_Layer: 0
   m_Name: SJ001
   m_TagString: Untagged
@@ -1745,9 +1747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0450ed10f267e8742892e6a59a8d5401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indent: 1
-  interval: 1
   bullet: {fileID: 9206373008185119783, guid: 8522438a925805a40b933b951aaf22ab, type: 3}
+  distance: 70
 --- !u!65 &4493341511610876112
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1777,3 +1778,33 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  speed: 15
+  speedRotate: 70
+  distance: 70
+  stopDistance: 200
+--- !u!114 &8837607292488380415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a84cd77b2854bc418949a966a279322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthFact: 50
+--- !u!135 &6745181783025221201
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100102}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.16030589
+  m_Center: {x: -0.0038449466, y: 0.1567694, z: -0.033055335}

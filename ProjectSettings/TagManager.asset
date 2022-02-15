@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Bomb
   - Key
+  - Damage
   layers:
   - Default
   - TransparentFX

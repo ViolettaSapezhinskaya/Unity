@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public int healthFact = 100;
 
     private bool batle = false;
-    private int key=0;
 
     // Start is called before the first frame update
     void Start()

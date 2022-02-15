@@ -3,52 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Text;
+using UnityEngine.Events;
 
 //стрельба противника
 public class Shooting : MonoBehaviour
 {
     public GameObject bullet;
-    public float pause = 5;
+    public float distance = 70;
 
-    // Start is called before the first frame update
-    void Start()
+    private GameObject player;
+    private void Start()
     {
-     
+        gameObject.GetComponent<ControllerMob>().End += ShootingEnd;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.tag == "Player")
+        {
+            player = other.gameObject;
+            if (Vector3.Distance(transform.position, player.transform.position) < distance)
+            {
+                StartCoroutine("ShootPlayer");
+            }
+        }
+    }
+    void Shoot()
+    {
+        //выпускает шар 
+        Instantiate(bullet, transform.position + new Vector3(0, 24, 0), transform.rotation);
     }
     IEnumerator ShootPlayer()
     {
         while (true)
         {
             Shoot();
-            yield return new WaitForSeconds(pause);
+            yield return new WaitForSeconds(5);
         }
     }
-    
-    void Shoot()
+    void ShootingEnd()
     {
-        //выпускает шар 
-        Instantiate(bullet, transform.position + new Vector3(0, 24, 0), transform.rotation);
+        StopAllCoroutines();
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        //когда кто-то подходит исполняет функцию
-        if (other.tag=="Player")
-        {
-            StartCoroutine("ShootPlayer");
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag=="Player")
-        {
-            StopAllCoroutines();
-        }
-    }
-
 }

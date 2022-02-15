@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class ControllerMob : MonoBehaviour
 {
     [SerializeField] Transform[] PatrolPoint;
     public float speed = 15;
     public float speedRotate = 70;
-    public float distancePlayer = 100;
+    public float distance = 70;
+    public float stopDistance = 200;
+
+    public UnityAction End;
 
     private int pointIndex;
     private NavMeshAgent agent;
@@ -16,7 +20,7 @@ public class ControllerMob : MonoBehaviour
     private Vector3 start;
     private GameObject player;
     private float rotZ;
-   
+
     //ИИ противников
     private void Awake()
     {
@@ -39,19 +43,37 @@ public class ControllerMob : MonoBehaviour
         if (battle)
         {
             LookAtXZ(player.transform.position, speedRotate);
-            if ((player.transform.position - transform.position).magnitude >= distancePlayer)
+            if (Vector3.Distance(transform.position, player.transform.position)>distance)
             {
-                Go();
+                Debug.Log(Vector3.Distance(transform.position, player.transform.position));
+                agent.destination = player.transform.position;
+                agent.stoppingDistance = distance;
             }
-            if (Vector3.Distance(transform.position,start)>200)
+            else
             {
-                agent.destination = start;
+                agent.ResetPath();
             }
-  
+            if (Vector3.Distance(start, transform.position) > stopDistance)
+            {
+                BattleEnd();
+            }
         }
 
     }
-    void SetPatrolPoint()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            if (!battle)
+            {
+                agent.ResetPath();
+                battle = true;
+                start = transform.position;
+                player = other.gameObject;
+            }
+        }
+    }
+    private void SetPatrolPoint()
     { 
             if ((!agent.pathPending) && agent.remainingDistance <= .5f && PatrolPoint.Length!=0)
             {
@@ -60,19 +82,13 @@ public class ControllerMob : MonoBehaviour
                 pointIndex++;
             }
     }
-    void Go()
+    private void BattleEnd()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * 1);
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag=="Player")
-        {
-            StopAllCoroutines();
-            battle = true;
-            start = transform.position;
-            player = other.gameObject;
-        }
+        End.Invoke();
+        agent.ResetPath();
+        battle = false;
+        agent.stoppingDistance = .5f;
+
     }
     private void LookAtXZ(Vector3 point, float speed)
     {
